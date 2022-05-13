@@ -49,7 +49,7 @@ while cap.isOpened(): # 캡처 객체 초기화 확인 cap 객체가 지정한 �
     video_crops = crop.crop(img,input_size)# 리스트 형태의 nomalizing 된 cropped face image
     
     for video_face in video_crops: # 실시간 얼굴이 여러개일 가능성도 있기 떄문에
-        video_face=video_face.copy().reshape((-1, input_size[1], input_size[0], 3)).astype(np.float32) / 255
+        video_face=video_face.copy().reshape((-1, input_size[1], input_size[0], 3)).astype(np.float32)
         prediction_video=model.predict(video_face) # video에 나온 얼굴 vector
 
         for pred_img in predictions:# 실시간 사진과 이미지 여러장 만큼 대조
