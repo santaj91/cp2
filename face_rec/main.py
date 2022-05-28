@@ -11,7 +11,7 @@ import tensorflow.compat.v1 as tf
 tf.compat.v1.disable_eager_execution()
 
 from model.facenet import Facenet
-from function.crop import crop
+from function.crop import crop, mtcnn
 from function.load_imgs import load_imgs
 
 profile_images_path='./images/profile'
@@ -29,12 +29,12 @@ self_imgs =load_imgs(self_image_path,size)
 
 profile_faces=[]
 for img in profile_imgs:
-    detected_faces=crop(img,input_size)
+    detected_faces=mtcnn(img,input_size)
     for detected_face in detected_faces:
         profile_faces.append(detected_face)
 
 
-self_faces=crop(self_imgs[0],input_size)
+self_faces=mtcnn(self_imgs[0],input_size)
 
 
 
@@ -71,5 +71,3 @@ for i in range(len(profile_predictions)):
 #     for j in a:
 #         plt.imshow(j)
 #         plt.show()
-
-
